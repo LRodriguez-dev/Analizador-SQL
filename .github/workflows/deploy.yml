@@ -1,0 +1,55 @@
+
+name: Publicar Analizador SQL
+
+on:
+  push:
+    branches:
+      - Dev
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Descargar proyecto
+        uses: actions/checkout@v4
+
+      - name: Instalar .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Compilar y publicar
+        run: dotnet publish -c Release -o ./publicacion
+
+      - name: Configurar ruta GitHub Pages
+        shell: bash
+        run: |
+          sed -i 's|<base href="/" />|<base href="/Analizador-SQL/" />|g' publicacion/wwwroot/index.html
+          touch publicacion/wwwroot/.nojekyll
+          cp publicacion/wwwroot/index.html publicacion/wwwroot/404.html
+
+      - name: Configurar GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Subir archivos publicados
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ./publicacion/wwwroot
+
+      - name: Publicar sitio
+        id: deployment
+        uses: actions/deploy-pages@v4
