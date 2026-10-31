@@ -1,4 +1,3 @@
-
 name: Publicar Analizador SQL
 
 on:
@@ -32,22 +31,31 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
-      - name: Compilar y publicar
-        run: dotnet publish -c Release -o ./publicacion
-
-      - name: Verificar archivos publicados
+      - name: Diagnosticar y publicar Blazor WebAssembly
+        shell: bash
         run: |
-          echo "Archivos de publicacion:"
-          find ./publicacion -maxdepth 6 -type f -name "index.html" -print
-          echo "Carpetas generadas:"
-          find ./publicacion -maxdepth 4 -type d -print
-  
+          echo 'Proyectos encontrados:'
+          find . -name '*.csproj' -not -path '*/obj/*' -not -path '*/bin/*'
+          echo 'Archivos index.html en el repositorio:'
+          find . -name 'index.html' -not -path '*/obj/*' -not -path '*/bin/*'
+          echo 'Publicando proyecto...'
+          dotnet publish -c Release -o ./publicacion
+          echo 'Archivos index.html publicados:'
+          find ./publicacion -name 'index.html'
+          echo 'Directorios publicados:'
+          find ./publicacion -maxdepth 4 -type d
+
       - name: Configurar ruta GitHub Pages
         shell: bash
         run: |
-          sed -i 's|<base href="/" />|<base href="/Analizador-SQL/" />|g' publicacion/wwwroot/index.html
-          touch publicacion/wwwroot/.nojekyll
-          cp publicacion/wwwroot/index.html publicacion/wwwroot/404.html
+          if [ ! -f ./publicacion/wwwroot/index.html ]; then
+            echo 'ERROR: No se encontro publicacion/wwwroot/index.html.'
+            echo 'Revisa las rutas impresas en el paso anterior para identificar el proyecto WebAssembly.'
+            exit 1
+          fi
+          sed -i 's|<base href="/" />|<base href="/Analizador-SQL/" />|g' ./publicacion/wwwroot/index.html
+          touch ./publicacion/wwwroot/.nojekyll
+          cp ./publicacion/wwwroot/index.html ./publicacion/wwwroot/404.html
 
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v5
