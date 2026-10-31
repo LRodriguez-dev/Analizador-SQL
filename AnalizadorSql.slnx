@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="AnalizadorSql/AnalizadorSql.Client/AnalizadorSql.Client.csproj" />
+  <Project Path="AnalizadorSql/AnalizadorSql/AnalizadorSql.csproj" />
+</Solution>

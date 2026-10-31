@@ -1,0 +1,194 @@
+
+/* ==========================================
+   MENU LATERAL - ANALIZADOR SQL
+   ========================================== */
+
+/* Encabezado */
+.top-row {
+    height: 4.5rem;
+    background-color: #142338;
+    border-bottom: 1px solid #34465e;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand {
+    color: #ffffff;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+    .navbar-brand:hover {
+        color: #ffffff;
+    }
+
+    .navbar-brand i {
+        color: #65b7ff;
+        font-size: 1.35rem;
+    }
+
+/* ==========================================
+   BOTON DE MENU MOVIL
+   ========================================== */
+
+.navbar-toggler {
+    appearance: none;
+    cursor: pointer;
+    width: 3.5rem;
+    height: 2.5rem;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    border: 1px solid #52667e;
+    border-radius: 6px;
+    background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") no-repeat center / 1.75rem #263d57;
+    transition: background-color 0.2s;
+}
+
+    .navbar-toggler:hover {
+        background-color: #355777;
+    }
+
+    .navbar-toggler:checked {
+        background-color: #285486;
+    }
+
+/* ==========================================
+   CONTENEDOR DEL MENU
+   ========================================== */
+
+.nav-scrollable {
+    display: none;
+    background-color: #172b43;
+    padding-top: 1.2rem;
+    padding-bottom: 1rem;
+}
+
+.navbar-toggler:checked ~ .nav-scrollable {
+    display: block;
+}
+
+/* ==========================================
+   TITULOS DE SECCIONES
+   ========================================== */
+
+.menu-section-title {
+    padding: 0.7rem 1.5rem;
+    color: #93a8c1;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 1.3px;
+}
+
+/* ==========================================
+   OPCIONES DE NAVEGACION
+   ========================================== */
+
+.nav-item {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+    .nav-item ::deep .nav-link {
+        display: flex;
+        align-items: center;
+        min-height: 46px;
+        height: auto;
+        width: 100%;
+        padding: 0.75rem 1rem;
+        line-height: 1.4;
+        color: #c8d5e5;
+        background-color: transparent;
+        border: none;
+        border-left: 3px solid transparent;
+        border-radius: 9px;
+        font-size: 0.88rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+    }
+
+        /* Iconos de las opciones */
+        .nav-item ::deep .nav-link i {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.3rem;
+            min-width: 1.3rem;
+            margin-right: 0.5rem;
+            font-size: 1.15rem;
+            color: #8fb5dc;
+        }
+
+        /* Efecto al pasar el cursor */
+        .nav-item ::deep .nav-link:hover {
+            background-color: #294460;
+            color: #ffffff;
+        }
+
+            .nav-item ::deep .nav-link:hover i {
+                color: #ffffff;
+            }
+
+        /* Pagina seleccionada */
+        .nav-item ::deep .nav-link.active {
+            background-color: #285486;
+            color: #ffffff;
+            border-left-color: #66b8ff;
+            font-weight: 600;
+        }
+
+            .nav-item ::deep .nav-link.active i {
+                color: #ffffff;
+            }
+
+/* ==========================================
+   PIE DEL MENU
+   ========================================== */
+
+.sidebar-footer {
+    margin: 2rem 1.5rem 0;
+    padding-top: 1rem;
+    border-top: 1px solid #34465e;
+    color: #8fa6bf;
+    font-size: 0.78rem;
+    display: flex;
+    align-items: center;
+}
+
+    .sidebar-footer i {
+        font-size: 1rem;
+        color: #8fb5dc;
+    }
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+
+/* Pantallas pequeñas */
+@media (max-width: 640.98px) {
+    .nav-scrollable {
+        display: none;
+    }
+
+    .navbar-toggler:checked ~ .nav-scrollable {
+        display: block;
+    }
+}
+
+/* Computadoras y pantallas grandes */
+@media (min-width: 641px) {
+    .navbar-toggler {
+        display: none;
+    }
+
+    .nav-scrollable {
+        display: block;
+        height: calc(100vh - 4.5rem);
+        overflow-y: auto;
+    }
+}

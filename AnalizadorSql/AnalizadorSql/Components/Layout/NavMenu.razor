@@ -1,0 +1,44 @@
+﻿
+<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">
+            <i class="bi bi-database-fill-gear me-2"></i>
+            SQL Analyzer
+        </a>
+    </div>
+</div>
+
+<input type="checkbox"
+       title="Navigation menu"
+       class="navbar-toggler" />
+
+<div class="nav-scrollable"
+     onclick="document.querySelector('.navbar-toggler').click()">
+
+    <nav class="flex-column">
+
+        <div class="menu-section-title mt-3">
+            HERRAMIENTAS SQL
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="analizar">
+                <i class="bi bi-code-square me-2"></i>
+                <span>Análisis léxico y sintáctico</span>
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="analisis-semantica">
+                <i class="bi bi-diagram-3 me-2"></i>
+                <span>Análisis semántico</span>
+            </NavLink>
+        </div>
+
+    </nav>
+
+    <div class="sidebar-footer">
+        <i class="bi bi-cpu me-2"></i>
+        Analizador SQL V1.0.0.1026
+    </div>
+</div>
