@@ -35,6 +35,13 @@ jobs:
       - name: Compilar y publicar
         run: dotnet publish -c Release -o ./publicacion
 
+      - name: Verificar archivos publicados
+      run: |
+        echo "Archivos de publicacion:"
+        find ./publicacion -maxdepth 6 -type f -name "index.html" -print
+        echo "Carpetas generadas:"
+        find ./publicacion -maxdepth 4 -type d -print
+  
       - name: Configurar ruta GitHub Pages
         shell: bash
         run: |
